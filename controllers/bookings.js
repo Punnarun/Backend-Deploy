@@ -80,7 +80,7 @@ exports.addBooking=async (req,res,next)=>{
         }
 
         const booking = await Booking.create(req.body);
-        sgMail.send(generateEmailMessage('create', booking));
+        // sgMail.send(generateEmailMessage('create', booking));
         res.status(200).json({ success:true, data: booking });
 
     }catch(error){
@@ -107,7 +107,7 @@ exports.updateBooking = async (req, res, next) => {
             new: true,
             runValidators: true
         });
-        sgMail.send(generateEmailMessage('update', booking));
+        // sgMail.send(generateEmailMessage('update', booking));
         res.status(200).json({ success: true, data: booking });
     } catch (error) {
         console.log(error);
@@ -128,8 +128,9 @@ exports.deleteBooking = async (req, res, next) => {
             return res.status(401).json({ success: false, message: `User ${req.user.id} is not authorized to delete this booking` });
         }
         await booking.deleteOne();
-        sgMail.send(generateEmailMessage('delete', booking));
+        // sgMail.send(generateEmailMessage('delete', booking));
         res.status(200).json({ success: true, data: {} });
+        
     } catch (error) {
         console.log(error);
         return res.status(500).json({ success: false, message: 'Cannot delete booking' });

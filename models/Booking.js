@@ -18,6 +18,14 @@ const BookingSchema = new mongoose.Schema({
     createAt: {
         type: Date,
         default: Date.now
+    },
+    username: {
+        type: String,
+        required: [true, 'Please add a username']
+    },
+    dentistname: {
+        type: String,
+        required: [true, 'Please add a dentistname']
     }
 }); 
 
